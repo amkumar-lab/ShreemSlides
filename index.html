@@ -262,7 +262,11 @@ button{font:inherit;color:inherit;cursor:pointer}
  .hint{font-size:2.8cqw;bottom:2cqw;left:2cqw}
  .imgl{min-height:0}.imgl .box{min-height:0;aspect-ratio:4/3;flex:none}
  .corner{width:11cqw;height:11cqw;right:2cqw;bottom:2cqw}
- .sl .ph{flex:none;height:42vw}.sl .ph::after{background:linear-gradient(0deg,#fbfaff 0,transparent 30%)!important}.kick{font-size:2.6cqw}.wm{width:90cqw;height:90cqw}.tag{display:none}.full img.frame{height:auto;width:100%}}
+ .sl .ph{flex:none;height:auto;aspect-ratio:4/3;max-height:62vh;background:#f3eefc}
+ .sl.ban .ph{aspect-ratio:16/6}
+ .sl .ph::before{content:"";position:absolute;inset:-20px;background:var(--img) center/cover;filter:blur(18px) saturate(1.2);opacity:.55}
+ .sl .ph img{object-fit:contain}
+ .sl .ph.ct img{padding:3cqw}.sl .ph::after{background:linear-gradient(0deg,#fbfaff 0,transparent 30%)!important}.kick{font-size:2.6cqw}.wm{width:90cqw;height:90cqw}.tag{display:none}.full img.frame{height:auto;width:100%}}
 
 .gal .col{overflow:hidden;padding-bottom:3cqw}
 .gbody{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr);gap:1.8cqw}
@@ -441,7 +445,7 @@ function level(k){
 }
 
 /* slide renderers */
-const side=(s,inner,cls='')=>s.hero&&s.asp>3?`<div class="sl ban ${cls}"><div class="ph"><img src="m/${s.hero}" alt=""></div><div class="col">${inner}</div></div>`:s.hero?`<div class="sl ${s.n%2?'':'lft'} ${cls}"><div class="col">${inner}</div><div class="ph${s.asp>.95?' ct':''}"><img src="m/${s.hero}" alt=""></div></div>`:`<div class="sl ${cls}"><div class="col">${inner}</div></div>`;
+const side=(s,inner,cls='')=>s.hero&&s.asp>3?`<div class="sl ban ${cls}"><div class="ph" style="--img:url(m/${s.hero})"><img src="m/${s.hero}" alt=""></div><div class="col">${inner}</div></div>`:s.hero?`<div class="sl ${s.n%2?'':'lft'} ${cls}"><div class="col">${inner}</div><div class="ph${s.asp>.95?' ct':''}" style="--img:url(m/${s.hero})"><img src="m/${s.hero}" alt=""></div></div>`:`<div class="sl ${cls}"><div class="col">${inner}</div></div>`;
 const kick=s=>{const c=SEC[secOf(s.n)];return c?`<div class="kick a" style="--i:0"><span></span>${esc(c.name)}</div>`:''};
 const T=s=>kick(s)+(s.title?`<h2 class="a${DEV.test(s.title)?' dev':''}" style="--i:0">${esc(s.title)}</h2>`:'');
 const R={
